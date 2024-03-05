@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ar" dir="ltr">
+
+<head>
+    <!-- Required meta tags -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/expense.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css"
+        integrity="sha384-nU14brUcp6StFntEOOEBvcJm4huWjB0OcIeQ3fltAfSmuZFrkAif0T+UtNGlKKQv" crossorigin="anonymous">
+    
+     
+        
+    <title>Expense tracker app</title>
+    
+    
+
+    <script src="https://kit.fontawesome.com/5a6a11ca8f.js" crossorigin="anonymous"></script>
+   
+
+</head>
+<nav  id="navbar"style="background-color: black;margin-left:25px;margin-right:25px;background:url('https://media.istockphoto.com/id/1286354786/vector/dark-prism-textured-abstract-background.jpg?s=612x612&w=0&k=20&c=lJiYScAyV7Iqn5FKdxMYCuntLO0ljQkR_oEftweNjmE=')no-repeat center center fixed;backdrop-filter: blur(0px);background-size: cover;background-position:center;">
+  <i  style="font-size:40px;color:white;"class="fa-solid fa-e">]</i>
+  <button style="background: transparent;"id="logout">LOGOUT</button>
+  <button style="background: transparent;right:10px"><a    class="link-light"href="report.html" >REPORT</a></button>
+
+  <button id="rzp-button" style="color:black;background-color: white;border-radius:18px;left :900px;font-weight: bold;">BUY PREMIUM</button>
+  
+ <button id="download-expense" style="font-size: 20px;left:370px;background: transparent;position: absolute;"> <i class="fa-solid fa-download"></i></button>  
+    <i style="color:gold;left:299px;position: absolute;" class="fa-solid fa-crown"></i>
+    
+    
+
+  
+<div class="hide" id="download-urls">
+    
+    <ul>
+    
+    </ul>
+</div>
+
+
+</nav>
+<body style="background: url('https://wallpapers.com/images/hd/grey-texture-background-d29qkeb2b46ygint.jpg')no-repeat center center fixed;background-size: cover;background-position: center;">
+   
+
+    <br><br>
+    <form style="background-color:black;padding:20px;margin-left: 20px;margin-right:20px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);background:url('https://media.istockphoto.com/id/1286354786/vector/dark-prism-textured-abstract-background.jpg?s=612x612&w=0&k=20&c=lJiYScAyV7Iqn5FKdxMYCuntLO0ljQkR_oEftweNjmE=')"onsubmit="handleFormSubmit(event)">
+        <div class="row">
+        <div class="col-sm-3">
+            <div class="input-group">
+        <select id="select"class="form-control fw-bolder"style="background-color:grey;color:white;">
+            <option selected>SELECT CATEGORY</option>
+            <option value="Mobile & Computers">Mobile & Computers</option>
+            <option value="Fashion & Beauty">Fashion & Beauty</option>
+            <option value="Groceries & Pet Supplies">Groceries & Pet Supplies</option>
+            <option value="Home, Furniture & Appliances">Home, Furniture & Appliances</option>
+            <option value="Music, Video & Gaming">Music, Video & Gaming</option>
+            <option value="Books & Education">Books & Education</option>
+            <option value="Toys, Children & Baby">Toys, Children & Baby</option>
+            <option value="Payments & Bookings">Payments & Bookings</option>
+            <option value="Office & Professional">Office & Professional</option>
+            <option value="Sports Outdoor & Travel">Sports Outdoor & Travel</option>
+            <option value="Gifting">Gifting</option>
+            <option value="Bills & EMI's">Bills & EMI's</option>
+            <option value="Others">Others</option>
+        </select  required>
+    </div>
+    </div>
+           <div class="col-sm-3">
+             <label class="visually-hidden" for="des">DESCIPTION</label>
+             <div class="input-group">
+               <div  class="fw-bolder"style="padding:8px;background-color: grey;color:white;"class="input-group-text">DESCIPTION</div>
+               <input type="text" class="form-control" id="des" name="des" required>
+             </div>
+           </div>
+
+           <div class="col-sm-3">
+            <label class="visually-hidden" for="exp">AMOUNT</label>
+            <div class="input-group">
+              <div  class="fw-bolder"style="padding:8px;background-color: grey;color:white;"class="input-group-text">AMOUNT</div>
+              <input type="number" class="form-control" id="exp" name="exp" required>
+            </div>
+          </div>
+          <div class="col-sm-2">
+          <button style="color:grey;font-weight:bold;background-color:white;"class="form-control" type="submit" id="addButton" class="badge text-bg-info shadow-lg p-3  rounded">ADD EXPENSE</button>
+         </div>
+         <div class="col-sm-1">
+          
+          <div class="number-of-expenses" >
+            
+            <label for="display-expenses"></label>
+            <select name="display-expenses" id="display-expenses">
+                
+                <option value="5" selected>5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+                <option value="30">30</option>
+                <option value="35">35</option>
+            </select>
+          </div>
+
+         </div>
+        </div>
+        
+ 
+           
+    
+    </form>
+    <br>
+    
+    
+    <div id="leaderboard-modal" class="modal">
+      <div style="background-color: rgba(1, 3, 26, 0.514); color: white;text-align: center; backdrop-filter: blur(5px);" class="modal-content leaderboard-background">
+          <span style="font-size: 30px;" class="close">&times;</span>
+          <h1 style="color: gold; ">LEADER BOARD <span><i class="fa-solid fa-trophy"></i></span></h1><br>
+          <table id="leaderboard-table">
+              <thead>
+                  <tr>
+                      <th>Rank</th>
+                      <th>Name</th>
+                      <th>Total Expenses</th>
+                  </tr>
+              </thead>
+              <tbody id="leaderboard-list"></tbody>
+          </table>
+      </div>
+    </div>
+    <div class="page">
+      <button id="prev" value="0" class="page-btn hide" style="border-radius: 20px;left:1160px;margin-top: 3px;">0</button>
+      <button id="curr" value="1" class="page-btn"style="border-radius: 9px;left:1170px">1</button>
+      <button id="next" value="2" class="page-btn"style="border-radius: 20px;left:1180px;">2</button>
+  </div>
+
+    <table class="table" style="margin-left: 30px;width: calc(100% - 60px);box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);">
+      <thead>
+        <tr >
+          <th scope="col"style="background-color:black;color:white;background:url('https://media.istockphoto.com/id/1286354786/vector/dark-prism-textured-abstract-background.jpg?s=612x612&w=0&k=20&c=lJiYScAyV7Iqn5FKdxMYCuntLO0ljQkR_oEftweNjmE=')">DATE</th>
+          <th scope="col"style="background-color:black;color:white;background:url('https://media.istockphoto.com/id/1286354786/vector/dark-prism-textured-abstract-background.jpg?s=612x612&w=0&k=20&c=lJiYScAyV7Iqn5FKdxMYCuntLO0ljQkR_oEftweNjmE=')">AMOUNT</th>
+          <th scope="col"style="background-color:black;color:white;background:url('https://media.istockphoto.com/id/1286354786/vector/dark-prism-textured-abstract-background.jpg?s=612x612&w=0&k=20&c=lJiYScAyV7Iqn5FKdxMYCuntLO0ljQkR_oEftweNjmE=')">DESCRIPTION</th>
+          <th scope="col"style="background-color:black;color:white;background:url('https://media.istockphoto.com/id/1286354786/vector/dark-prism-textured-abstract-background.jpg?s=612x612&w=0&k=20&c=lJiYScAyV7Iqn5FKdxMYCuntLO0ljQkR_oEftweNjmE=')">CATEGORY</th>
+          <th scope="col"style="background-color:black;color:white;background:url('https://media.istockphoto.com/id/1286354786/vector/dark-prism-textured-abstract-background.jpg?s=612x612&w=0&k=20&c=lJiYScAyV7Iqn5FKdxMYCuntLO0ljQkR_oEftweNjmE=')"></th>
+          <th scope="col"style="background-color:black;color:white;background:url('https://media.istockphoto.com/id/1286354786/vector/dark-prism-textured-abstract-background.jpg?s=612x612&w=0&k=20&c=lJiYScAyV7Iqn5FKdxMYCuntLO0ljQkR_oEftweNjmE=')"></th>
+          
+        </tr>
+      </thead>
+      <tbody id="listofitems"class="table-group-divider">
+        
+      </tbody>
+    </table>
+
+  </div>
+  
+
+   
+    <p style="color:palevioletred;text-align: right;">Thanks for visiting  </p>
+   <i style="position:absolute;right:50px;color:yellow"class="fa-solid fa-face-smile"></i>
+
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    -->
+</body>
+<script src="js/expense.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uuid@3.4.0/dist/uuid.min.js"></script>
+
+</html>
